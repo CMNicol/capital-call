@@ -1,7 +1,7 @@
 from django.test import TestCase
 from .models import DataCall, DataFund, DataCommitment, DataFundInvestment
 from datetime import date
-from .call import Controller, Call
+from .callcontroller import CallController
 
 
 # Create your tests here.
@@ -56,16 +56,16 @@ class TestModels(TestCase):
         self.assertEqual(fundFromDataCommitment, DataCommitment.objects.get(pk=2))
 
     def test_call_calculation_1(self):
-        new_call = Call(date=date(2018, 1, 31), investment_name='Investment 1', capital_required=9500000)
-        Controller.calc_undrawn_capital(new_call)
+        new_call = CallController(date=date(2018, 1, 31), investment_name='Investment 1', capital_required=9500000)
+        new_call.calculate_call()
         self.assertEqual(DataCall.objects.last().investment_name, self.test_data_call_record_1.investment_name)
         self.assertEqual(DataFundInvestment.objects.first().investment_amount, self.test_dfi_record_1.investment_amount)
 
     def test_call_calculation_2(self):
-        new_call = Call(date=date(2018, 1, 31), investment_name='Investment 1', capital_required=9500000)
-        Controller.calc_undrawn_capital(new_call)
-        new_call = Call(date=date(2018, 4, 30), investment_name='Investment 2', capital_required=10000000)
-        Controller.calc_undrawn_capital(new_call)
+        new_call = CallController(date=date(2018, 1, 31), investment_name='Investment 1', capital_required=9500000)
+        new_call.calculate_call()
+        new_call = CallController(date=date(2018, 4, 30), investment_name='Investment 2', capital_required=10000000)
+        new_call.calculate_call()
 
         self.assertEqual(DataFundInvestment.objects.all()[0].call_id, self.test_dfi_record_1.call_id)
         self.assertEqual(DataFundInvestment.objects.all()[0].fund_id, self.test_dfi_record_1.fund_id)

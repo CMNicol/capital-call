@@ -3,18 +3,14 @@ from django.db.models import QuerySet
 from datetime import date
 
 
-class Call:
+class CallController:
 
-    def __init__(self, date, investment_name, capital_required: int):
+    def __init__(self, date: date, investment_name: str, capital_required: int):
         self.date = date
         self.investment_name = investment_name
         self.capital_required = capital_required
 
-
-class Controller:
-
-    @staticmethod
-    def calc_undrawn_capital(call: Call):
+    def calculate_call(self):
 
         def add_all(records: QuerySet) -> int:
             total = 0
@@ -22,11 +18,11 @@ class Controller:
                 total += record.investment_amount
             return total
 
-        capital_to_find = call.capital_required
+        capital_to_find = self.capital_required
         commitments = DataCommitment.objects.all()
         new_dfi_entries = []
         # create new DataCall record
-        new_call_record = DataCall(date=call.date, investment_name=call.investment_name, capital_requirement=call.capital_required).save()
+        DataCall(date=self.date, investment_name=self.investment_name, capital_requirement=self.capital_required).save()
         k = DataCall.objects.all().last()
         # for each commitment, calculate how much capital has been drawn
         # then calculate how much undrawn capital commitment there is
