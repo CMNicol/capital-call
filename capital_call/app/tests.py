@@ -6,7 +6,6 @@ from .callcontroller import CallController
 
 # Create your tests here.
 class TestModels(TestCase):
-
     test_data_call_record_1 = DataCall(pk=1, date=date(2018, 1, 31), investment_name='Investment 1',
                                        capital_requirement=9500000)
     test_data_call_record_2 = DataCall(pk=2, date=date(2019, 1, 31), investment_name='Investment 2',
@@ -47,9 +46,6 @@ class TestModels(TestCase):
         DataCommitment(fund_id=DataFund.objects.get(fundName='Fund 4'), date=date(2018, 9, 30), amount=15000000).save()
         DataCommitment(fund_id=DataFund.objects.get(fundName='Fund 1'), date=date(2018, 12, 31), amount=10000000).save()
 
-
-
-
     def test_foreign_key_funds_and_commitments(self):
         fundFromDataFund = DataFund.objects.get(fundName='Fund 2')
         fundFromDataCommitment = DataCommitment.objects.get(fund_id=fundFromDataFund)
@@ -70,15 +66,15 @@ class TestModels(TestCase):
         self.assertEqual(DataFundInvestment.objects.all()[0].call_id, self.test_dfi_record_1.call_id)
         self.assertEqual(DataFundInvestment.objects.all()[0].fund_id, self.test_dfi_record_1.fund_id)
         self.assertEqual(DataFundInvestment.objects.all()[0].commitment_id, self.test_dfi_record_1.commitment_id)
-        self.assertEqual(DataFundInvestment.objects.all()[0].investment_amount, self.test_dfi_record_1.investment_amount)
+        self.assertEqual(DataFundInvestment.objects.all()[0].investment_amount,
+                         self.test_dfi_record_1.investment_amount)
         self.assertEqual(DataFundInvestment.objects.all()[1].call_id, self.test_dfi_record_2.call_id)
         self.assertEqual(DataFundInvestment.objects.all()[1].fund_id, self.test_dfi_record_2.fund_id)
         self.assertEqual(DataFundInvestment.objects.all()[1].commitment_id, self.test_dfi_record_2.commitment_id)
-        self.assertEqual(DataFundInvestment.objects.all()[1].investment_amount, self.test_dfi_record_2.investment_amount)
+        self.assertEqual(DataFundInvestment.objects.all()[1].investment_amount,
+                         self.test_dfi_record_2.investment_amount)
         self.assertEqual(DataFundInvestment.objects.all()[2].call_id, self.test_dfi_record_3.call_id)
         self.assertEqual(DataFundInvestment.objects.all()[2].fund_id, self.test_dfi_record_3.fund_id)
         self.assertEqual(DataFundInvestment.objects.all()[2].commitment_id, self.test_dfi_record_3.commitment_id)
-        self.assertEqual(DataFundInvestment.objects.all()[2].investment_amount, self.test_dfi_record_3.investment_amount)
-
-
-
+        self.assertEqual(DataFundInvestment.objects.all()[2].investment_amount,
+                         self.test_dfi_record_3.investment_amount)
