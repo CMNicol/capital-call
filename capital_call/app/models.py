@@ -9,7 +9,8 @@ class DataFund(models.Model):
 
 class DataCommitment(models.Model):
     commitment_id = models.IntegerField(primary_key=True)
-    fund_id = models.ForeignKey(DataFund, on_delete=models.DO_NOTHING)  # a commitment can only have one fund associated therefore use foreign key
+    fund_id = models.ForeignKey(DataFund, on_delete=models.DO_NOTHING)  # a commitment can only have one fund
+    # associated therefore use foreign key
     date = models.DateField()
     amount = models.IntegerField(validators=[MinValueValidator(0)])
 
