@@ -58,7 +58,7 @@ manipulations. Effectively the backend functionality of the app.<br>
 
 ## Setting up the app for yourself
 
-Clone the repo
+Clone the repo, then
 ```shell script
 cd capital_call/capital_call
 ```
