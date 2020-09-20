@@ -44,7 +44,7 @@ needed to be called from each commitment.
 
 The app was developed using the Django Web Framework, using Django Forms, Models, Views and the built-in SQLite database.
 
-A quick look at the 'app' directory can give a good overview of how things fit together. Note, not all files within this 
+A quick look at the `app/` directory can give a good overview of how things fit together. Note, not all files within this 
 directory are listed here.
 
 `models.py` - the definition of the database models.<br>
@@ -57,4 +57,27 @@ manipulations. Effectively the backend functionality of the app.<br>
 `tests.py` - contains tests used to verify the call calculation made by the CallController class.<br>
 
 ## Setting up the app for yourself
+
+Clone the repo
+```shell script
+cd capital_call/capital_call
+```
+Set up a virtual environment
+```shell script
+python3 -m venv .venv
+```
+```shell script
+source .venv/bin/activate
+```
+Install django
+```shell script
+pip3 install django
+```
+Make the database migrations and run the app, it should be available by default at `http://127.0.0.1:8000/`
+```shell script
+python3 manage.py migrate
+```
+```shell script
+python3 manage.py runserver
+```
 
