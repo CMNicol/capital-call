@@ -61,8 +61,8 @@ Four models are used by the app:
 
 * DataFund - contains the names and IDs of various funds.
 * DataCommitment - contains the capital commitments of the investors (amounts, dates and which funds they are invested in).
-* DataCall - contains the data relevant to capital calls (amount, date and what investment they were called for)
-* DataFundInvestment - contains the records showing capital call transactions on different capital commitments
+* DataCall - contains the data relevant to capital calls (amount, date and what investment they were called for).
+* DataFundInvestment - contains the records showing capital call transactions on different capital commitments.
 
 `DataFund` and `DataCommitment` are initialised with data when the database migrations are made. They are not editable through the app, and serve only as inputs.
 `DataCall` and `DataFundInvestment` are edited by the app. The results of user input and the call calculation are recorded in these tables.
