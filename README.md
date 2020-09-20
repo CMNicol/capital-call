@@ -56,6 +56,12 @@ directory are listed here.
 manipulations. Effectively the backend functionality of the app.<br>
 `tests.py` - contains tests used to verify the call calculation made by the CallController class.<br>
 
+## The models
+The image below shows the relationships between the four database tables used by the app. A solid circle represents 
+a foreign key represents the table with the foreign key and an empty square represents the table with the primary key. 
+Specifics of the relationships are shown below the image.
+![](db_screenshot.png)
+
 ## Setting up the app for yourself
 
 Clone the repo, then
