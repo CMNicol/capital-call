@@ -31,7 +31,7 @@ This calculation is shown in the following table. "Drawdown" can be seen as equi
 | Commitment ID |   Fund |       Date |     Amount | Undrawn Capital Commitment<br>before Drawdown |   Drawdown | Undrawn Capital Commitment<br>after Drawdown |
 |--------------:|-------:|-----------:|-----------:|----------------------------------------------:|-----------:|---------------------------------------------:|
 |             1 | Fund 1 | 01/08/2020 | 10,000,000 |                                    10,000,000 | 10,000,000 |                                            0 |
-|             2 | Fund 3 | 04/05/2020 | 24,000,000 |                                    10,000,000 |  5,000,000 |                                    5,000,000 |
+|             2 | Fund 3 | 04/05/2020 | 24,000,000 |                                    24,000,000 |  5,000,000 |                                   19,000,000 |
 |             3 | Fund 2 | 17/10/2020 | 16,000,000 |                                    16,000,000 |          0 |                                   16,000,000 |
 
 So, to go ahead with Investment ABC, the fund manager must to call 10,000,000 from Commitment ID = 1 and 5,000,000
