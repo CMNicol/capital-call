@@ -24,8 +24,8 @@ def create_call(request):
                 investment_name=form.cleaned_data['investment_name'],
                 capital_required=form.cleaned_data['capital_requirement']
             )
-        call_controller.calculate_call_for_preview()
-        return render(request, 'create_call.html', {'form': form, 'call': call_controller})
+            call_controller.calculate_call(is_confirmed=False)
+            return render(request, 'create_call.html', {'form': form, 'call': call_controller})
 
     form = CallForm()
     return render(request, 'create_call.html', {'form': form})
@@ -40,8 +40,7 @@ def confirm_call(request):
                 investment_name=form.cleaned_data['investment_name'],
                 capital_required=form.cleaned_data['capital_requirement']
             )
-            call_controller.calculate_call()
-            call_controller.confirm()
+            call_controller.calculate_call(is_confirmed=True)
             return redirect(dashboard)
         else:
             return redirect(error)
