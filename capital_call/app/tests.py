@@ -4,7 +4,6 @@ from datetime import date
 from .callcontroller import CallController
 
 
-# Create your tests here.
 class TestModels(TestCase):
     test_data_call_record_1 = DataCall(pk=1, date=date(2018, 1, 31), investment_name='Investment 1',
                                        capital_requirement=9500000)
