@@ -57,10 +57,20 @@ manipulations. Effectively the backend functionality of the app.<br>
 `tests.py` - contains tests used to verify the call calculation made by the CallController class.<br>
 
 ## The models
-The image below shows the relationships between the four database tables used by the app. A solid circle represents 
-a foreign key represents the table with the foreign key and an empty square represents the table with the primary key. 
-Specifics of the relationships are shown below the image.
-![](db_screenshot.png)
+Four models are used by the app:
+
+* DataFund - contains the names and IDs of various funds.
+* DataCommitment - contains the capital commitments of the investors (amounts, dates and which funds they are invested in).
+* DataCall - contains the data relevant to capital calls (amount, date and what investment they were called for)
+* DataFundInvestment - contains the records showing capital call transactions on different capital commitments
+
+`DataFund` and `DataCommitment` are initialised with data when the database migrations are made. They are not editable through the app, and serve only as inputs.
+`DataCall` and `DataFundInvestment` are edited by the app. The results of user input and the call calculation are recorded in these tables.
+
+The image below shows the relationships between the four database tables used by the app. A solid circle represents the table with the foreign key and an empty square represents the table with the primary key. 
+This image was taken from DBeaver - Entity Relationship Diagram.<br>
+![](db_screenshot.png)<br>
+The extra appended `"_id"` on many of the fields as in `commitment_id_id` in the `app_datafundinvestment` table are a consequence of DBeaver, the actual fields do not have the extra `"_id"` on the model fields. 
 
 ## Setting up the app for yourself
 
