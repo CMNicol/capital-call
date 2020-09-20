@@ -1,0 +1,29 @@
+<h1>Preview and Confirm</h1>
+<div>
+    <table border="5" cellpadding="5" cellspacing="5" title="DataFundInvestment">
+
+
+        <tr>
+            <td>Date</td>
+            <td>{{call.date}}</td>
+        </tr>
+        <tr>
+            <td>Investment Name</td>
+            <td>{{call.investment_name}}</td>
+        </tr>
+        <tr>
+            <td>Capital Required</td>
+            <td>{{call.capital_required}}</td>
+        </tr>
+
+
+
+
+    </table>
+</div>
+<form action="{% url 'dashboard' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" onclick="{{ call.calculate_call }}">
+        Confirm Call
+    </button>
+</form>
