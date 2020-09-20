@@ -1,8 +1,6 @@
 <h1>Preview and Confirm</h1>
 <div>
     <table border="5" cellpadding="5" cellspacing="5" title="DataFundInvestment">
-
-
         <tr>
             <td>Date</td>
             <td>{{call.date}}</td>
@@ -16,14 +14,38 @@
             <td>{{call.capital_required}}</td>
         </tr>
 
+    </table>
+</div>
+<div>
+    <table border="5" cellpadding="5" cellspacing="5" title="DataFundInvestment">
+        <tr>
+            <th>Commitment ID</th>
+            <th>Fund ID</th>
+            <th>Date ID</th>
+            <th>Fund Name</th>
+            <th>Committed Amounts</th>
+            <th>Undrawn Capital Before Drawdown</th>
+            <th>Drawdown Notice</th>
+            <th>Undrawn Capital After Drawdown</th>
+        </tr>
 
-
-
+        <tr>
+            {% for row in call.preview_table_data %}
+            <td>{{ row.commitment_id }}</td>
+            <td>{{ row.fund_id }}</td>
+            <td>{{ row.date }}</td>
+            <td>{{ row.fund_name }}</td>
+            <td>{{ row.committed_amounts }}</td>
+            <td>{{ row.undrawn_before_drawdown }}</td>
+            <td>{{ row.drawdown }}</td>
+            <td>{{ row.undrawn_after_drawdown }}</td>
+            {% endfor %}
+        </tr>
     </table>
 </div>
 <form action="{% url 'dashboard' %}" method="post">
     {% csrf_token %}
-    <button type="submit" onclick="{{ call.calculate_call }}">
+    <button type="submit">
         Confirm Call
     </button>
 </form>

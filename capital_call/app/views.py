@@ -16,6 +16,7 @@ def dashboard(request):
 
 
 def create_call(request):
+
     form = CallForm()
     return render(request, 'create_call.html', {'form': form})
 
@@ -29,6 +30,7 @@ def preview_call(request):
                 investment_name=form.cleaned_data['investment_name'],
                 capital_required=form.cleaned_data['capital_requirement']
             )
+            call_controller.calculate_call()
             return render(request, 'preview_call.html', {'call': call_controller})
         else:
             return redirect(error)
