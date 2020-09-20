@@ -5,7 +5,6 @@ from .callcontroller import CallController
 from django.shortcuts import redirect, reverse
 
 
-# Create your views here.
 def home(request):
     return render(request, 'homepage.html', {})
 
@@ -44,6 +43,8 @@ def confirm_call(request):
             return redirect(dashboard)
         else:
             return redirect(error)
+    else:
+        return redirect(dashboard)
 
 
 def error(request):
