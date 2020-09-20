@@ -51,7 +51,7 @@ directory are listed here.
 `urls.py` - the definition of the URL endpoints used by the app's views.<br>
 `forms.py` - define the form used to collect user input (for a call).<br>
 `templates/` - contains the html templates rendered by the views.<br>
-`views.py` - the methods within are used to connect the user with the app's backend functionality.<br>
+`views.py` - the methods (views) within are used to connect the user with the app's backend functionality.<br>
 `callcontroller.py` - contains the CallController class which handles the call calculation and database
 manipulations. Effectively the backend functionality of the app.<br>
 `tests.py` - contains tests used to verify the call calculation made by the CallController class.<br>
