@@ -60,7 +60,7 @@ manipulations. Effectively the backend functionality of the app.<br>
 
 Clone the repo, then
 ```shell script
-cd capital_call/capital_call
+cd capital-call/capital_call
 ```
 Set up a virtual environment
 ```shell script
