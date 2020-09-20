@@ -5,14 +5,13 @@ from .callcontroller import CallController
 from django.shortcuts import redirect, reverse
 
 
-# Create your views here.
 def home(request):
     return render(request, 'homepage.html', {})
 
 
 def dashboard(request):
-    a_list_of_lists, column_headers = get_dashboard_data()
-    return render(request, 'dashboard.html', {'dashboard_data': a_list_of_lists, 'column_headers': column_headers})
+    call_fund_amount_list, column_headers = get_dashboard_data()
+    return render(request, 'dashboard.html', {'dashboard_data': call_fund_amount_list, 'column_headers': column_headers})
 
 
 def create_call(request):
@@ -44,6 +43,8 @@ def confirm_call(request):
             return redirect(dashboard)
         else:
             return redirect(error)
+    else:
+        return redirect(dashboard)
 
 
 def error(request):
@@ -56,17 +57,17 @@ def cancel(request):
 
 def get_dashboard_data():
     calls = DataCall.objects.all()
-    a_list_of_lists = []
+    call_fund_amount_list = []
     column_headers = ['Date', 'Call ID']
     column_headers += list(DataFund.objects.values_list('fundName', flat=True))
     for call in calls:
-        a_list = [call.date, call.pk]
+        call_fund_amount = [call.date, call.pk]
         for fund in DataFund.objects.all():
-            a = DataFundInvestment.objects.filter(call_id=call).filter(fund_id=fund).first()
-            if a:
-                a_list.append(a.investment_amount)
+            dfi = DataFundInvestment.objects.filter(call_id=call).filter(fund_id=fund).first()
+            if dfi:
+                call_fund_amount.append(dfi.investment_amount)
             else:
-                a_list.append(0)
+                call_fund_amount.append(0)
 
-        a_list_of_lists.append(a_list)
-    return a_list_of_lists, column_headers
+        call_fund_amount_list.append(call_fund_amount)
+    return call_fund_amount_list, column_headers
