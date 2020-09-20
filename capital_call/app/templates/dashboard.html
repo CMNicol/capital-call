@@ -1,0 +1,27 @@
+<h1>Capital Call Dashboard</h1>
+
+
+<div>
+    <table border="5" cellpadding="5" cellspacing="5" title="DataFundInvestment">
+        <tr>
+            {% for item in column_headers %}
+            <th>{{ item }}</th>
+            {% endfor %}
+        </tr>
+        {% for list in dashboard_data %}
+        <tr>
+            {% for item in list %}
+            <td>{{ item }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div>
+    <form action="{% url 'create_call' %}">
+        <button type="submit">
+            New Call
+        </button>
+    </form>
+</div>
