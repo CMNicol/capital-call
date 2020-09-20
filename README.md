@@ -21,8 +21,8 @@ from funds.
 An example best illustrates what the application does.
 
 Given the commitments above, a fund manager needs to withdraw 15,000,000 to fund an investment (we'll
-call it 'Investment ABC'). Using the FIFO methodology this means they would need to withdraw first from
-Commitment ID = 1, which would give leave them with 5,000,000 more to capital to find. They would
+call it 'Investment ABC'). Using the FIFO methodology this means they would need to first withdraw all capital from
+Commitment ID = 1, which would leave them with 5,000,000 more to find. They would
 also need to withdraw 5,000,000 from Commitment ID = 2. The withdrawal of capital from a commitment is known
 as a capital call - a fund manager calls a certain amount of capital from a commitment.
 
