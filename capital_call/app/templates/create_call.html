@@ -1,6 +1,67 @@
 <h1>Create Call</h1>
-<form action="{% url 'preview_call' %}" method="post">
+{% if call == None %}
+<form action="{% url 'create_call' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit">
 </form>
+{% else %}
+<form action="{% url 'confirm_call' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Confirm">
+</form>
+<form action="{% url 'cancel' %}" method="get">
+    {% csrf_token %}
+    <input type="submit" value="Cancel">
+</form>
+{% endif %}
+
+
+<div>
+    <table border="5" cellpadding="5" cellspacing="5" title="DataFundInvestment">
+        <tr>
+            <td>Date</td>
+            <td>{{call.date}}</td>
+        </tr>
+        <tr>
+            <td>Investment Name</td>
+            <td>{{call.investment_name}}</td>
+        </tr>
+        <tr>
+            <td>Capital Required</td>
+            <td>{{call.capital_required}}</td>
+        </tr>
+
+    </table>
+</div>
+
+
+<div>
+    <table border="5" cellpadding="5" cellspacing="5" title="DataFundInvestment">
+        <tr>
+            <th>Commitment ID</th>
+            <th>Fund ID</th>
+            <th>Date ID</th>
+            <th>Fund Name</th>
+            <th>Committed Amounts</th>
+            <th>Undrawn Capital Before Drawdown</th>
+            <th>Drawdown Notice</th>
+            <th>Undrawn Capital After Drawdown</th>
+        </tr>
+        {% for row in call.preview_table_data %}
+        <tr>
+
+            <td>{{ row.commitment_id }}</td>
+            <td>{{ row.fund_id }}</td>
+            <td>{{ row.date }}</td>
+            <td>{{ row.fund_name }}</td>
+            <td>{{ row.committed_amounts }}</td>
+            <td>{{ row.undrawn_before_drawdown }}</td>
+            <td>{{ row.drawdown }}</td>
+            <td>{{ row.undrawn_after_drawdown }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>

@@ -16,12 +16,22 @@ def dashboard(request):
 
 
 def create_call(request):
+    if request.method == 'POST':
+        form = CallForm(request.POST)
+        if form.is_valid():
+            call_controller = CallController(
+                date=form.cleaned_data['date'],
+                investment_name=form.cleaned_data['investment_name'],
+                capital_required=form.cleaned_data['capital_requirement']
+            )
+        call_controller.calculate_call_for_preview()
+        return render(request, 'create_call.html', {'form': form, 'call': call_controller})
 
     form = CallForm()
     return render(request, 'create_call.html', {'form': form})
 
 
-def preview_call(request):
+def confirm_call(request):
     if request.method == 'POST':
         form = CallForm(request.POST)
         if form.is_valid():
@@ -31,13 +41,18 @@ def preview_call(request):
                 capital_required=form.cleaned_data['capital_requirement']
             )
             call_controller.calculate_call()
-            return render(request, 'preview_call.html', {'call': call_controller})
+            call_controller.confirm()
+            return redirect(dashboard)
         else:
             return redirect(error)
 
 
 def error(request):
     return render(request, 'error.html')
+
+
+def cancel(request):
+    return redirect(create_call)
 
 
 def get_dashboard_data():
