@@ -34,7 +34,7 @@ This calculation is shown in the following table. "Drawdown" can be seen as equi
 |             2 | Fund 3 | 04/05/2020 | 24,000,000 |                                    24,000,000 |  5,000,000 |                                   19,000,000 |
 |             3 | Fund 2 | 17/10/2020 | 16,000,000 |                                    16,000,000 |          0 |                                   16,000,000 |
 
-So, to go ahead with Investment ABC, the fund manager must to call 10,000,000 from Commitment ID = 1 and 5,000,000
+So, to go ahead with Investment ABC, the fund manager must call 10,000,000 from Commitment ID = 1 and 5,000,000
 from Commitment ID = 2.
 
 To get to this answer quickly, they could use this application! The app takes in a capital call (amount, date, targeted investment name), and calculates the amounts
