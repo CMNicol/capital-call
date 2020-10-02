@@ -14,7 +14,7 @@
     {{ form.as_p }}
     <input type="submit" value="Confirm">
 </form>
-<form action="{% url 'cancel' %}" method="get">
+<form action="{% url 'create_call' %}" method="get">
     {% csrf_token %}
     <input type="submit" value="Cancel">
 </form>
