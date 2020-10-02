@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Call Confirmed</title>
+</head>
+
+<body>
+<h1>Call Confirmed!</h1>
+<form action="{% url 'dashboard' %}" method="get">
+    {% csrf_token %}
+    <input type="submit" value="Fab, let's go back to the dashboard.">
+</form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Call Invalid</title>
+</head>
+<body>
+<h1>Call Form Invalid</h1>
+<form action="{% url 'create_call' %}" method="get">
+    {% csrf_token %}
+    <input type="submit" value="The form was invalid. Try again.">
+</form>
+</body>
+</html>
