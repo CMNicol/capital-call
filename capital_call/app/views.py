@@ -19,12 +19,18 @@ class Create(APIView):
         form = CallForm(request.POST)
         if form.is_valid():
             call_controller = CallController(
-                date=form.cleaned_data['date'],
+                date=form.cleaned_data['date'].__str__(),
                 investment_name=form.cleaned_data['investment_name'],
                 capital_required=form.cleaned_data['capital_requirement']
             )
             call_controller.calculate_call(is_confirmed=False)
-            return render(request, 'create_call.html', {'form': form, 'call': call_controller})
+            request.session['preview'] = call_controller.preview_table_data
+            request.session['call'] = {'date': call_controller.date,
+                                       'investment_name': call_controller.investment_name,
+                                       'capital_required': call_controller.capital_required
+                                       }
+
+            return render(request, 'preview_call.html', {'call': request.session['call'], 'preview': request.session['preview']})
         else:
             return render(request, 'call_confirm_invalid.html')
 
@@ -59,14 +65,11 @@ class Dashboard(APIView):
 
 class Confirm(APIView):
     def post(self, request: HttpRequest):
-        form = CallForm(request.POST)
-        if form.is_valid():
-            call_controller = CallController(
-                date=form.cleaned_data['date'],
-                investment_name=form.cleaned_data['investment_name'],
-                capital_required=form.cleaned_data['capital_requirement']
-            )
-            call_controller.calculate_call(is_confirmed=True)
-            return render(request, 'call_confirmed.html')
-        else:
-            return render(request, 'call_confirm_invalid.html')
+        call_controller = CallController(
+            date=request.session['call']['date'],
+            investment_name=request.session['call']['investment_name'],
+            capital_required=request.session['call']['capital_required']
+        )
+        call_controller.calculate_call(is_confirmed=True)
+        return render(request, 'call_confirmed.html')
+
