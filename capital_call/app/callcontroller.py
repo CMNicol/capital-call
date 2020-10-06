@@ -5,7 +5,7 @@ from datetime import date
 
 class CallController:
 
-    def __init__(self, date: date, investment_name: str, capital_required: int):
+    def __init__(self, date: str, investment_name: str, capital_required: int):
         self.date = date  # date of call
         self.investment_name = investment_name
         self.capital_required = capital_required  # capital required by the call
@@ -104,7 +104,7 @@ class CallController:
         return {
             'commitment_id': commitment.pk,
             'fund_id': commitment.fund_id.pk,
-            'date': commitment.date,
+            'date': commitment.date.__str__(),
             'fund_name': commitment.fund_id.fundName,
             'committed_amounts': commitment.amount,
             'undrawn_before_drawdown': undrawn_before_drawdown,
